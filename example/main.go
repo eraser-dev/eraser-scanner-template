@@ -25,16 +25,20 @@ func main() {
 		log.Error(err, "unable to retrieve list of images from collector container")
 	}
 
-	// TODO: implement customized scanner to scan allImages and  partition into vulnerableImages and failedImages
-	vulnerableImages := make([]eraserv1alpha1.Image, 0, len(allImages))
-	failedImages := make([]eraserv1alpha1.Image, 0, len(allImages))
+	// scan images with custom scanner
+	nonCompliant, failedImages := scan(allImages)
 
 	// send images to eraser container
-	if err := imageProvider.SendImages(vulnerableImages, failedImages); err != nil {
+	if err := imageProvider.SendImages(nonCompliant, failedImages); err != nil {
 		log.Error(err, "unable to send non-compliant images to eraser container")
 		return err
 	}
 
 	// complete scan
 	imageProvider.Finish()
+}
+
+// TODO: implement customized scanner to scan allImages and  partition into non-compliant and failedImages
+func scan(allImages []eraserv1alpha1.Image) ([]eraserv1alpha1.Image, []eraserv1alpha1.Image) {
+	return nil, nil
 }
