@@ -38,7 +38,10 @@ func main() {
 	imageProvider.Finish()
 }
 
-// TODO: implement customized scanner to scan allImages and  partition into non-compliant and failedImages
+// TODO: implement customized scanner
 func scan(allImages []eraserv1alpha1.Image) ([]eraserv1alpha1.Image, []eraserv1alpha1.Image) {
-	return nil, nil
+	// scan images and partition into non-compliant and failedImages
+	var nonCompliant, failedImages []eraserv1alpha1.Image
+
+	return nonCompliant, failedImages
 }
