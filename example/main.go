@@ -3,8 +3,8 @@ package main
 import (
 	"context"
 
-	eraserv1alpha1 "github.com/Azure/eraser/api/v1alpha1"
-	template "github.com/Azure/eraser/api/v1alpha1/pkg/scanners/template"
+	"github.com/Azure/eraser/api/unversioned"
+	template "github.com/Azure/eraser/pkg/scanners/template"
 	logf "sigs.k8s.io/controller-runtime/pkg/log"
 )
 
@@ -20,9 +20,10 @@ func main() {
 	)
 
 	// retrieve list of all non-running, non-excluded images from collector container
-	allImages, err := imageProvider.RecieveImages()
+	allImages, err := imageProvider.ReceiveImages()
 	if err != nil {
 		log.Error(err, "unable to retrieve list of images from collector container")
+		return
 	}
 
 	// scan images with custom scanner
@@ -31,7 +32,7 @@ func main() {
 	// send images to eraser container
 	if err := imageProvider.SendImages(nonCompliant, failedImages); err != nil {
 		log.Error(err, "unable to send non-compliant images to eraser container")
-		return err
+		return
 	}
 
 	// complete scan
@@ -39,9 +40,9 @@ func main() {
 }
 
 // TODO: implement customized scanner
-func scan(allImages []eraserv1alpha1.Image) ([]eraserv1alpha1.Image, []eraserv1alpha1.Image) {
+func scan(allImages []unversioned.Image) ([]unversioned.Image, []unversioned.Image) {
 	// scan images and partition into non-compliant and failedImages
-	var nonCompliant, failedImages []eraserv1alpha1.Image
+	var nonCompliant, failedImages []unversioned.Image
 
 	return nonCompliant, failedImages
 }
