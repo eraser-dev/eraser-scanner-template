@@ -24,7 +24,7 @@ jobs:
         uses: actions/setup-go@v3
         with:
           go-version: 1.19
-      - name: lint manager
+      - name: lint
         uses: golangci/golangci-lint-action@v3
         with:
           version: latest
