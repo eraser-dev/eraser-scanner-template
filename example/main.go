@@ -36,7 +36,10 @@ func main() {
 	}
 
 	// complete scan
-	imageProvider.Finish()
+	if err := imageProvider.Finish(); err != nil {
+		log.Error(err, "unable to complete scanner")
+		return
+	}
 }
 
 // TODO: implement customized scanner
