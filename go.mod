@@ -4,7 +4,7 @@ go 1.19
 
 require (
 	github.com/Azure/eraser v1.0.0-beta.3
-	sigs.k8s.io/controller-runtime v0.14.5
+	sigs.k8s.io/controller-runtime v0.14.6
 )
 
 require (
