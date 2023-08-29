@@ -3,8 +3,8 @@ package main
 import (
 	"context"
 
-	"github.com/Azure/eraser/api/unversioned"
-	template "github.com/Azure/eraser/pkg/scanners/template"
+	"github.com/eraser-dev/eraser/api/unversioned"
+	template "github.com/eraser-dev/eraser/pkg/scanners/template"
 	logf "sigs.k8s.io/controller-runtime/pkg/log"
 )
 
